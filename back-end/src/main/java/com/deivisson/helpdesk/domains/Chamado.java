@@ -2,9 +2,7 @@ package com.deivisson.helpdesk.domains;
 
 import com.deivisson.helpdesk.enums.Prioridade;
 import com.deivisson.helpdesk.enums.Status;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -32,13 +30,11 @@ public class Chamado implements Serializable {
     private String titulo;
     private String observacoes;
 
-    @JsonBackReference
     @ManyToOne
-    @JsonIgnore
+    @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
 
-    @JsonBackReference
     @ManyToOne
-    @JsonIgnore
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 }
