@@ -1,6 +1,7 @@
 package com.deivisson.helpdesk.domains;
 
 import com.deivisson.helpdesk.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import java.util.List;
 public class Cliente extends Pessoa {
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Chamado> chamados = new ArrayList<>();
 
