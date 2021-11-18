@@ -1,6 +1,7 @@
 package com.deivisson.helpdesk.dtos;
 
 import com.deivisson.helpdesk.domains.Tecnico;
+import com.deivisson.helpdesk.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -37,5 +38,13 @@ public class TecnicoDTO implements Serializable {
         this.senha = obj.getSenha();
         this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.dataCriacao = obj.getDataCriacao();
+    }
+
+    public Set<Perfil> getPerfis() {
+        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+    }
+
+    public void addPerfil(Perfil perfil) {
+        this.perfis.add(perfil.getCodigo());
     }
 }
